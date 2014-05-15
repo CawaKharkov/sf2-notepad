@@ -1,0 +1,11 @@
+## YAML Template.
+services:
+    notepad.form.login:
+        class: Application\NotepadBundle\Form\LoginType
+        tags:
+            - { name: login.form, alias: login }
+            
+    notepad.form.singup:
+        class: Application\NotepadBundle\Form\SignupForm
+        tags:
+            - { name: signup.form, alias: signup }        

@@ -1,0 +1,43 @@
+{% macro about(name) %}
+    <!--about modal-->
+    <div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h2 class="text-center">Информация</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12 text-center">
+                        <a href="https://github.com/iatek/bootstrap-google-plus">GitHub Fork</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endmacro %}
+{% macro login(name) %}
+    <!--login modal-->
+    <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h2 class="text-center"><img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"><br>Login</h2>
+                </div>
+                <div class="modal-body">
+                    {{ render(controller('ApplicationNotepadBundle:User:login'))}}
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
