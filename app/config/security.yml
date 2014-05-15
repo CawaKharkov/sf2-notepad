@@ -19,20 +19,20 @@ security:
             security: false
 
         login:
-            pattern:  ^/demo/secured/login$
+            pattern:  ^/user/login$
             security: false
 
         secured_area:
-            pattern:    ^/demo/secured/
+            pattern:    ^/notes/*
             form_login:
-                check_path: _security_check
-                login_path: _demo_login
+                check_path: user_login_check
+                login_path: user_login_page
             logout:
-                path:   _demo_logout
+                path:   user_logout
                 target: _demo
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

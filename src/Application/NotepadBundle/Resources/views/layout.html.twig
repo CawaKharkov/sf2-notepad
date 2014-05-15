@@ -6,6 +6,11 @@
         <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+
+        {% stylesheets 'bundles/applicationnotepad/css/style.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
         <!--[if lt IE 9]>
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -30,20 +35,17 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ path('home') }}">Главная</a></li>
+                        <li><a href="{{ path('notes') }}">Записи</a></li>
+                        
                         <li><a href="#loginModal" role="button" data-toggle="modal">Вход</a></li>
                         <li><a href="#aboutModal" role="button" data-toggle="modal">Инфо</a></li>
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><span class="badge pull-right">40</span>Link</a></li>
-                                <li><a href="#"><span class="badge pull-right">2</span>Link</a></li>
                                 <li><a href="#"><span class="badge pull-right">0</span>Link</a></li>
                                 <li><a href="#"><span class="label label-info pull-right">1</span>Link</a></li>
-                                <li><a href="#"><span class="badge pull-right">13</span>Link</a></li>
                             </ul>
                         </li>
-                        <li><a href="#" id="btnToggle"><i class="glyphicon glyphicon-th-large"></i></a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
                     </ul>
                 </div>	
             </div>	

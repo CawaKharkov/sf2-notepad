@@ -21,7 +21,7 @@ class LoginType extends AbstractType
                 // ->add('name', 'text', ['required'=>true, 'attr'=>['class'=>'form-control', 'placeholder'=>'Ваш ник']])
                 ->add('password', 'password', ['required' => true, 'attr' => ['class' => 'form-control input-lg',
                         'placeholder' => 'Пароль']])
-                ->add('save', 'submit', ['attr' => ['class' => 'btn btn-primary btn-lg btn-block']])
+                ->add('login', 'submit', ['attr' => ['class' => 'btn btn-primary btn-lg btn-block']])
         ;
     }
 

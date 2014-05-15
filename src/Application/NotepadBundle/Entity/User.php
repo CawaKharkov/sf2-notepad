@@ -25,7 +25,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=50)
-     * @Assert\NotBlank(groups={"login"})
+     * @Assert\NotBlank(groups={"signup"})
      */
     private $name;
 
@@ -33,6 +33,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
+     * @Assert\NotBlank(groups={"signup", "login"})
      */
     private $password;
 
@@ -40,6 +41,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=50)
+      * @Assert\NotBlank(groups={"signup","login"}) 
      */
     private $email;
 
