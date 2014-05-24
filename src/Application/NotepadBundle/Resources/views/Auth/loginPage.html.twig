@@ -1,0 +1,15 @@
+{% extends "ApplicationNotepadBundle::layout.html.twig" %}
+
+{% block title %}ApplicationNotepadBundle:User:view{% endblock %}
+
+{% block content %}
+
+    <div class="col-md-6 center-div">
+        <h1>Вам нужно авторизоваться для просмотра данной страницы</h1>
+        {% if error %}
+            <div>{{ error.message }}</div>
+        {% endif %}
+        {{form(loginForm)}}
+    </div>
+
+{% endblock %}

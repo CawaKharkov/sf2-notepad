@@ -4,14 +4,19 @@ namespace Application\NotepadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * User
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Application\NotepadBundle\Entity\UserRepository")
+ * @UniqueEntity(fields="username", message="Sorry, this username is already taken.", groups={"signup"})
+ * @UniqueEntity(fields="email", message="Sorry, this email is already taken.", groups={"signup"})
  */
-class User
+class User implements UserInterface, \Serializable
 {
+
     /**
      * @var integer
      *
@@ -24,10 +29,10 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=50)
-     * @Assert\NotBlank(groups={"signup"})
+     * @ORM\Column(name="username", type="string", length=50, unique=true)
+     * @Assert\NotBlank(groups={"signup","login"})
      */
-    private $name;
+    private $username;
 
     /**
      * @var string
@@ -41,7 +46,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=50)
-      * @Assert\NotBlank(groups={"signup","login"}) 
+     * @Assert\NotBlank(groups={"signup"}) 
      */
     private $email;
 
@@ -52,6 +57,10 @@ class User
      */
     private $created;
 
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
 
     /**
      * Get id
@@ -64,14 +73,14 @@ class User
     }
 
     /**
-     * Set name
+     * Set username
      *
      * @param string $name
      * @return User
      */
-    public function setName($name)
+    public function setUsername($name)
     {
-        $this->name = $name;
+        $this->username = $name;
 
         return $this;
     }
@@ -81,9 +90,9 @@ class User
      *
      * @return string 
      */
-    public function getName()
+    public function getUsername()
     {
-        return $this->name;
+        return $this->username;
     }
 
     /**
@@ -154,4 +163,59 @@ class User
     {
         return $this->created;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+        
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+                // see section on salt below
+                // $this->salt,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+                $this->id,
+                $this->username,
+                $this->password,
+                // see section on salt below
+                // $this->salt
+                ) = unserialize($serialized);
+    }
+
 }

@@ -36,8 +36,6 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ path('home') }}">Главная</a></li>
                         <li><a href="{{ path('notes') }}">Записи</a></li>
-                        
-                        <li><a href="#loginModal" role="button" data-toggle="modal">Вход</a></li>
                         <li><a href="#aboutModal" role="button" data-toggle="modal">Инфо</a></li>
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
@@ -59,7 +57,6 @@
 
         {% import "ApplicationNotepadBundle:macro:modal.html.twig" as modal %}
         {{ modal.about }}
-        {{ modal.login }}
 
 
         <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

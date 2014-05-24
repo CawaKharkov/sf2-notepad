@@ -17,7 +17,7 @@ class SignupType extends AbstractType
     {
         $builder
         ->add('email', 'email', ['required'=>true, 'attr'=>['class'=>'form-control', 'placeholder'=>'Ваша почта']])
-        ->add('name', 'text', ['required'=>true, 'attr'=>['class'=>'form-control', 'placeholder'=>'Ваш ник']])
+        ->add('username', 'text', ['required'=>true, 'attr'=>['class'=>'form-control', 'placeholder'=>'Ваш ник']])
         ->add('password', 'password', ['required'=>true, 'attr'=>['class'=>'form-control', 'placeholder'=>'Пароль']])
         ->add('save', 'submit', ['attr'=>['class'=>'btn btn-success']])
         ;
@@ -39,6 +39,6 @@ class SignupType extends AbstractType
      */
     public function getName()
     {
-        return 'signup_type';
+        return 'signup';
     }
 }

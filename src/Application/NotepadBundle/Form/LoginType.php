@@ -16,10 +16,10 @@ class LoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('email', 'email', ['required' => true, 'attr' => ['class' => 'form-control input-lg',
-                        'placeholder' => 'Ваша почта']])
+                ->add('_username', 'text', ['required' => true, 'attr' => ['class' => 'form-control input-lg',
+                        'placeholder' => 'Ваш логин']])
                 // ->add('name', 'text', ['required'=>true, 'attr'=>['class'=>'form-control', 'placeholder'=>'Ваш ник']])
-                ->add('password', 'password', ['required' => true, 'attr' => ['class' => 'form-control input-lg',
+                ->add('_password', 'password', ['required' => true, 'attr' => ['class' => 'form-control input-lg',
                         'placeholder' => 'Пароль']])
                 ->add('login', 'submit', ['attr' => ['class' => 'btn btn-primary btn-lg btn-block']])
         ;
@@ -41,7 +41,7 @@ class LoginType extends AbstractType
      */
     public function getName()
     {
-        return 'login_type';
+        return null;
     }
 
 }

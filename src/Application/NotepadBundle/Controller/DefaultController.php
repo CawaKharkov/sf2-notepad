@@ -8,12 +8,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
+
     /**
      * @Route("/", name="home")
      * @Template()
      */
     public function indexAction()
     {
-        return [];
+        $blockRepo = $this->getDoctrine()->getManager()->getRepository('ApplicationNotepadBundle:NoteBlock');
+
+        return ['notes' => $blockRepo->findAll()];
     }
+
 }
