@@ -6,11 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+
 /**
  * User
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Application\NotepadBundle\Entity\UserRepository")
+ * @HasLifecycleCallbacks
  * @UniqueEntity(fields="username", message="Sorry, this username is already taken.", groups={"signup"})
  * @UniqueEntity(fields="email", message="Sorry, this email is already taken.", groups={"signup"})
  */
@@ -142,16 +145,14 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set created
-     *
-     * @param \DateTime $created
-     * @return User
+     * @ORM\PrePersist
      */
-    public function setCreated($created)
+    public function onPrePersist()
     {
-        $this->created = $created;
-
-        return $this;
+        if ($this->isActive === null) {
+            $this->isActive = 1;
+        }
+        $this->created = new \DateTime();
     }
 
     /**

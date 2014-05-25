@@ -14,6 +14,8 @@ services:
        class:        Application\NotepadBundle\Security\UserProvider
        arguments: [ @doctrine.orm.default_entity_manager ]
        
-    application_notepad.security.service.registration:
+    application_notepad.security.registration:
        class:        Application\NotepadBundle\Security\RegistrationService
-       arguments: [ @doctrine.orm.default_entity_manager ]   
+       arguments: [ @doctrine.orm.default_entity_manager ]
+       calls:
+        - [ setContainer, [ @service_container ] ]
