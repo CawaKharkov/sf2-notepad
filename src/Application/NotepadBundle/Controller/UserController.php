@@ -35,14 +35,15 @@ class UserController extends Controller
      */
     public function signupAction(Request $request)
     {
-        $signupForm = $this->createForm('signup', null, ['action' => $this->generateUrl('user_create')]);
+        $em = $this->getDoctrine()->getManager();
 
+        $signupForm = $this->createForm('signup', new User());
         $signupForm->handleRequest($request);
+        
         if ($signupForm->isValid()) {
-            var_dump($signupForm->getData());
-            die();
+           $this->get()->registerUser($signupForm->getData());
         }
-
+        
         return ['signupForm' => $signupForm->createView()];
     }
 
@@ -52,28 +53,7 @@ class UserController extends Controller
      */
     public function createAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $signupForm = $this->createForm('signup', new User());
-
-        $signupForm->handleRequest($request);
-        $valid = false;
-        if ($signupForm->isValid()) {
-            $registration = $signupForm->getData();
-            $factory = $this->get('security.encoder_factory');
-            $encoder = $factory->getEncoder($registration);
-            $password = $encoder->encodePassword('ryanpass', $registration->getSalt());
-            $registration->setPassword($password);
-            $em->persist($registration);
-            $em->flush();
-            $valid = true;
-        }
-
-        return $this->render(
-                        'ApplicationNotepadBundle:User:signup.html.twig', [
-    'signupForm' => $signupForm->createView(),
-                            'valid' => $valid]
-        );
+        
     }
 
 }

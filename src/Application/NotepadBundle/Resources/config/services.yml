@@ -9,3 +9,11 @@ services:
         class: Application\NotepadBundle\Form\SignupType
         tags:
             - { name: form.type, alias: signup }
+            
+    application_notepad.security.userprovider:
+       class:        Application\NotepadBundle\Security\UserProvider
+       arguments: [ @doctrine.orm.default_entity_manager ]
+       
+    application_notepad.security.service.registration:
+       class:        Application\NotepadBundle\Security\RegistrationService
+       arguments: [ @doctrine.orm.default_entity_manager ]   
